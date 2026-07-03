@@ -1,0 +1,14 @@
+{
+  "DJI_20260702134233_0017_D.csv": {
+    "status": "ok",
+    "predicted_label": "normal",
+    "predicted_class": 1,
+    "confidence": 0.9941278696060181,
+    "probabilities": {
+      "abnormal": 0.005871976725757122,
+      "normal": 0.9941278696060181
+    },
+    "num_windows": 26,
+    "num_frames": 888
+  }
+}
