@@ -1,0 +1,7 @@
+yolo11n-pose.pt
+yolo11x-pose.pt
+yolo26x-pose.pt
+data/
+.qwen/
+__pycache__/
+runs/
