@@ -1,3 +1,8 @@
+# 模型参数
+model:
+  in_channels: 34
+  num_classes: 2
+
 # 训练参数
 epochs: 500
 batch_size: 32
@@ -13,6 +18,3 @@ data:
     train:
       normal: data/csv/normal
       abnormal: data/csv/abnormal
-    test:
-      normal: data/csv/test/normal
-      abnormal: data/csv/test/abnormal

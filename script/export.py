@@ -2,7 +2,7 @@
 模型导出脚本：将训练好的模型导出为 .pt 文件。
 
 用法:
-    python -m script.export --checkpoint best_model.pth --output model_export.pt --config config/config.yaml
+    python -m script.export --checkpoint exp/my_model/my_model.pth --output exp/my_model/my_model_export.pt --config exp/my_model/config.yaml
 """
 import click
 import yaml
@@ -11,7 +11,7 @@ import os
 import json
 from datetime import datetime
 
-from models import JumpRopeClassifier
+from models import RopeClassifier
 
 
 @click.command()
@@ -23,10 +23,14 @@ def export(checkpoint, output, config):
         cfg = yaml.safe_load(f)
 
     # 1. 初始化模型
+    model_config = cfg.get('model', {})
+    in_channels = model_config.get('in_channels', 34)
+    num_classes = model_config.get('num_classes', 2)
+
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = JumpRopeClassifier(
-        in_channels=34,
-        num_classes=2
+    model = RopeClassifier(
+        in_channels=in_channels,
+        num_classes=num_classes
     ).to(device)
 
     # 2. 加载权重
@@ -38,8 +42,8 @@ def export(checkpoint, output, config):
     export_data = {
         'model_state_dict': state_dict,
         'config': {
-            'in_channels': 34,
-            'num_classes': 2,
+            'in_channels': in_channels,
+            'num_classes': num_classes,
             'window_size': cfg['window_size'],
             'stride': cfg['stride'],
         },
@@ -57,8 +61,8 @@ def export(checkpoint, output, config):
     torch.save(export_data, output)
 
     print(f"模型已导出至: {output}")
-    print(f"  - in_channels: 34")
-    print(f"  - num_classes: 2")
+    print(f"  - in_channels: {in_channels}")
+    print(f"  - num_classes: {num_classes}")
     print(f"  - window_size: {cfg['window_size']}")
     print(f"  - stride: {cfg['stride']}")
 

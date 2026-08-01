@@ -3,13 +3,13 @@
 
 用法:
     # 单个文件推理
-    python -m script.inference --model model_export.pt --input data/csv/test/normal/test.csv
+    python -m script.export_infer --model exp/my_model/my_model_export.pt --input data/csv/test/normal/test.csv
 
     # 目录批量推理
-    python -m script.inference --model model_export.pt --input data/csv/test/normal/
+    python -m script.export_infer --model exp/my_model/my_model_export.pt --input data/csv/test/normal/
 
     # 输出详细结果到 JSON
-    python -m script.inference --model model_export.pt --input data/csv/test/ --output results.json
+    python -m script.export_infer --model exp/my_model/my_model_export.pt --input data/csv/test/ --output results.json
 """
 import click
 import torch
@@ -20,7 +20,7 @@ import json
 import glob
 
 from utils import load_and_normalize_csv
-from models import JumpRopeClassifier
+from models import RopeClassifier
 
 
 LABEL_MAP = {0: 'abnormal', 1: 'normal'}
@@ -88,7 +88,7 @@ def inference(model, input_path, output):
     export_data = torch.load(model, map_location=device, weights_only=True)
 
     model_cfg = export_data['config']
-    model_instance = JumpRopeClassifier(
+    model_instance = RopeClassifier(
         in_channels=model_cfg['in_channels'],
         num_classes=model_cfg['num_classes']
     ).to(device)

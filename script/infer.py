@@ -2,7 +2,7 @@ import click
 import yaml
 import torch
 import numpy as np
-from models import JumpRopeClassifier
+from models import RopeClassifier
 from utils import load_and_normalize_csv
 
 @click.command()
@@ -13,8 +13,12 @@ def infer(csv_path, model_path, config):
     with open(config, 'r') as f:
         cfg = yaml.safe_load(f)
         
+    model_config = cfg.get('model', {})
+    in_channels = model_config.get('in_channels', 34)
+    num_classes = model_config.get('num_classes', 2)
+
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = JumpRopeClassifier(in_channels=34, num_classes=2).to(device)
+    model = RopeClassifier(in_channels=in_channels, num_classes=num_classes).to(device)
     model.load_state_dict(torch.load(model_path, map_location=device))
     model.eval()
     
