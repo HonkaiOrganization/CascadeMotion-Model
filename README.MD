@@ -147,4 +147,4 @@ WebUI 和 `train.py --name` 会自动生成实验配置到 `exp/<name>/`。
 
 ## 许可证
 
-[Apache 2.0](LICENSE)
+[LGPL v2.1](LICENSE)
