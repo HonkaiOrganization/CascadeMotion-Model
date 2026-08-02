@@ -1,7 +1,30 @@
-yolo11n-pose.pt
-yolo11x-pose.pt
-yolo26x-pose.pt
+# 预训练模型（大文件）
+pretrained/classifiers/*.pt
+pretrained/pose/*.pt
+
+# 实验输出
+exp/
+
+# 数据目录（视频和CSV数据）
 data/
-.qwen/
-__pycache__/
+
+# 训练输出
 runs/
+results/
+
+# 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 其他
+.qwen/
+*.log
+.DS_Store
+Thumbs.db

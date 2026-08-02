@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-class JumpRopeClassifier(nn.Module):
+class RopeClassifier(nn.Module):
     def __init__(self, in_channels=34, num_classes=2):
         super().__init__()
         # 输入形状: (Batch, 34, window_size)

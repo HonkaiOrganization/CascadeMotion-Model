@@ -1,7 +1,7 @@
 import torch
 from torch.utils.data import Dataset
 
-class JumpRopeDataset(Dataset):
+class RopeDataset(Dataset):
     def __init__(self, data_segments, labels, window_size=64, stride=32):
         """
         data_segments: list of numpy arrays, 每个 array shape 为 (Frames, 17, 2)
