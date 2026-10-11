@@ -1,0 +1,45 @@
+{
+  "completed_utc": "2026-10-11T09:20:18.622664+00:00",
+  "epochs_completed": 200,
+  "optimizer_steps": 2200,
+  "maximum_epochs": 1500,
+  "stopped_early": true,
+  "best_epoch": 11,
+  "best_optimizer_step": 121,
+  "checkpoint": "exp\\paper_20261011\\paper_20261011.pth",
+  "checkpoint_sha256": "ee8660965545d9f19c3b8d27cd9726eb5ff571c740f7fb9d70b9f76d49162616",
+  "best_checkpoint_metrics": {
+    "train": {
+      "loss": 0.019312455784529448,
+      "accuracy": 1.0
+    },
+    "validation": {
+      "loss": 0.15440096454807076,
+      "accuracy": 0.963855421686747
+    }
+  },
+  "counts": {
+    "train": {
+      "files": 6,
+      "windows": 176,
+      "class_windows": {
+        "0": 104,
+        "1": 72
+      }
+    },
+    "validation": {
+      "files": 2,
+      "windows": 83,
+      "class_windows": {
+        "0": 48,
+        "1": 35
+      }
+    }
+  },
+  "selection": "minimum validation cross-entropy",
+  "limitations": [
+    "Video-disjoint validation; subject identities are unavailable.",
+    "Directory labels are inherited by overlapping windows.",
+    "Finite validation data and early stopping do not guarantee absence of overfitting."
+  ]
+}

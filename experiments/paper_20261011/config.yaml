@@ -1,0 +1,35 @@
+required_environment: sport
+seed: 42
+device: cuda
+threads: 1
+model:
+  in_channels: 34
+  num_classes: 2
+epochs: 1500
+min_epochs: 200
+patience: 120
+min_delta: 0.0001
+batch_size: 16
+lr: 0.0003
+weight_decay: 0.001
+lr_patience: 20
+min_lr: 1.0e-06
+log_every: 10
+window_size: 64
+stride: 32
+data:
+  subsets:
+    train:
+      normal:
+      - data/csv/normal/DJI_20260702095008_0013_D.csv
+      - data/csv/normal/normal_20260702_200218_seg0000.csv
+      - data/csv/normal/normal_20260702_200249_seg0001.csv
+      abnormal:
+      - data/csv/abnormal/DJI_20260702094923_0012_D.csv
+      - data/csv/abnormal/abnormal_20260702_200425_seg0000.csv
+      - data/csv/abnormal/abnormal_20260702_200455_seg0001.csv
+    validation:
+      normal:
+      - data/csv/normal/DJI_20260703135015_0028_D.csv
+      abnormal:
+      - data/csv/abnormal/DJI_20260703135043_0029_D.csv

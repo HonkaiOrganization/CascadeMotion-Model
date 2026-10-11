@@ -1,0 +1,49 @@
+{
+  "started_utc": "2026-10-11T09:19:54.861671+00:00",
+  "command": [
+    "D:\\Program_Files\\envs\\sport\\python.exe",
+    "E:\\CascadeMotion\\CascadeMotion-Model\\script\\train.py",
+    "--config",
+    "config/paper_20261011.yaml",
+    "--name",
+    "paper_20261011"
+  ],
+  "cwd": "E:\\CascadeMotion\\CascadeMotion-Model",
+  "seed": 42,
+  "python": "3.12.13",
+  "torch": "2.12.1+cu130",
+  "numpy": "2.4.4",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "deterministic_algorithms": true,
+  "torch_threads": 1,
+  "source_commit": "f902698d4ddac9088f67cc0aadbdd448d17072b3",
+  "source_sha256": {
+    "script/train.py": "5c9eb34d46f31b810a241effd3dcaf55959463fc640049b93e8a867347dd36ca",
+    "models/__init__.py": "61853da45ea56b6837e94631bf53eba8893f2f11e6c9227c10b3acd89a70a134",
+    "dataset/__init__.py": "169d4ba9acbd95526ccf6a7fdf5cc1086f5ca21eeb906acfc587919085f998aa",
+    "utils/__init__.py": "1d40526000e4dc8bb76c931a60bef20ec06e547c4ac875bf1837ead6ac9eb58f"
+  },
+  "config_sha256": "8bcb80f3b29a6ab4a7cb0a00282b2e3f2d07122e1d7d56bf624edda3a28c1a45",
+  "manifest_sha256": "0fb661170a259c2d6ff7d586968240e5b4bb0a5ce19a83e2c6746698591fd5b6",
+  "counts": {
+    "train": {
+      "files": 6,
+      "windows": 176,
+      "class_windows": {
+        "0": 104,
+        "1": 72
+      }
+    },
+    "validation": {
+      "files": 2,
+      "windows": 83,
+      "class_windows": {
+        "0": 48,
+        "1": 35
+      }
+    }
+  },
+  "selection": "minimum validation cross-entropy",
+  "test_data_used_for_selection": false
+}
