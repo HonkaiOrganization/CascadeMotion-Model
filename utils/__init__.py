@@ -63,17 +63,17 @@ def load_dataset_from_config(data_config, subset='train'):
     all_labels = []
     
     # 加载正常数据 (label=1)
-    normal_dir = subset_config.get('normal')
-    if normal_dir and os.path.isdir(normal_dir):
-        segments, labels = load_csv_directory(normal_dir, label=1)
-        all_segments.extend(segments)
-        all_labels.extend(labels)
-    
-    # 加载不规范数据 (label=0)
-    abnormal_dir = subset_config.get('abnormal')
-    if abnormal_dir and os.path.isdir(abnormal_dir):
-        segments, labels = load_csv_directory(abnormal_dir, label=0)
-        all_segments.extend(segments)
-        all_labels.extend(labels)
+    for category, label in [('normal', 1), ('abnormal', 0)]:
+        source = subset_config.get(category)
+        if isinstance(source, list):
+            for path in source:
+                if not os.path.isfile(path):
+                    raise FileNotFoundError(path)
+                all_segments.append(load_and_normalize_csv(path))
+                all_labels.append(label)
+        elif source and os.path.isdir(source):
+            segments, labels = load_csv_directory(source, label)
+            all_segments.extend(segments)
+            all_labels.extend(labels)
     
     return all_segments, all_labels

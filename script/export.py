@@ -9,6 +9,8 @@ import yaml
 import torch
 import os
 import json
+from pathlib import Path
+import hashlib
 from datetime import datetime
 
 from models import RopeClassifier
@@ -53,6 +55,14 @@ def export(checkpoint, output, config):
             'config_path': os.path.abspath(config),
         }
     }
+
+    experiment = Path(checkpoint).parent
+    if (experiment / 'summary.json').is_file():
+        export_data['metadata']['training'] = json.loads((experiment / 'summary.json').read_text(encoding='utf-8'))
+        export_data['metadata']['training_audit_sha256'] = {
+            filename: hashlib.sha256((experiment / filename).read_bytes()).hexdigest()
+            for filename in ['config.yaml', 'manifest.json', 'run.json', 'metrics.csv', 'summary.json']
+        }
 
     # 4. 保存
     output_dir = os.path.dirname(output)
